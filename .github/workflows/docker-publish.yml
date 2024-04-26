@@ -57,3 +57,11 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          
+      - name: Deploy
+        uses: werf/actions/converge@v2
+        with:
+#          env: stage
+          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+#        env:
+#          WERF_SET_ENV_URL: "envUrl=http://habrapp.example.com"
