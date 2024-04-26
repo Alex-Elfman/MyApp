@@ -11,7 +11,7 @@ on:
 env:
   REGISTRY: docker.io
   # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: myapp
 
 
 jobs:
@@ -51,7 +51,10 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
+          tags: latest
+          labels: latest
+          
 
       # Build and push Docker image with Buildx (don't push on PR)
       - name: Build and push Docker image
