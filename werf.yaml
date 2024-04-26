@@ -1,0 +1,39 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: app-web
+  name: app-web
+  namespace: stage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-web
+  template:
+    metadata:
+      labels:
+        app: app-web
+    spec:
+      containers:
+        - image: alexelfman/myapp:gitTag
+          imagePullPolicy: IfNotPresent
+          name: app-web
+      terminationGracePeriodSeconds: 30
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-web
+  namespace: stage
+spec:
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+  selector:
+    app: app-web
+  type: NodePort
