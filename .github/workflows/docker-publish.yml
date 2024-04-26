@@ -48,7 +48,7 @@ jobs:
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
           images: ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}
-          tags: ${{github.event.release.tag_name }}
+          tags: ${{ github.ref_name }}
           labels: latest
           
       - name: Build and push Docker image
