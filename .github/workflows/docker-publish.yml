@@ -61,7 +61,5 @@ jobs:
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
-#          env: stage
+          file: myapp-deploy.yml
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-#        env:
-#          WERF_SET_ENV_URL: "envUrl=http://habrapp.example.com"
