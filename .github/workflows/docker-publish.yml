@@ -61,5 +61,5 @@ jobs:
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
-          file: myapp-deploy.yml
+          run: export image=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
