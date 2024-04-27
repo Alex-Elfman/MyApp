@@ -65,5 +65,7 @@ jobs:
 #            export image=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
 #            kubectl apply -f werf.yaml
           env: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-          run: DOCKER_METADATA_OUTPUT_TAGS="${image}" CI=true kubectl apply -f werf.yaml 
+          run: |
+            DOCKER_METADATA_OUTPUT_TAGS="${image}" CI=true 
+            kubectl apply -f werf.yaml 
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
