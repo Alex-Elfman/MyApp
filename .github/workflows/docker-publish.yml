@@ -66,7 +66,7 @@ jobs:
 #            envsubst < myapp-deploy.yml | grep -i image_dev
 #            envsubst < myapp-deploy.yml | kubectl apply -f
 #            kubectl apply -f werf.yaml --env="image_name=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
-        env: image_dev: "${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
+        env: image_dev=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
 #          run: |
 #          run: sed -i 's/$image_name/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/' werf.yaml
 #            DOCKER_METADATA_OUTPUT_TAGS="${image}" CI=true 
