@@ -61,14 +61,14 @@ jobs:
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
-#          script: |
-#            export image_name=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-#            envsubst < werf.yaml | grep -i image_name
-#            envsubst < deployment.yaml | kubectl apply -f
+          script: |
+            export image_name=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+            envsubst < werf.yaml | grep -i image_name
+            envsubst < myapp-deploy.yml | kubectl apply -f
 #            kubectl apply -f werf.yaml --env="image_name=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
 #          env: image_name:${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
 #          run: |
-          run: sed -i 's/$image_name/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/' werf.yaml
+#          run: sed -i 's/$image_name/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/' werf.yaml
 #            DOCKER_METADATA_OUTPUT_TAGS="${image}" CI=true 
 #            kubectl apply -f werf.yaml 
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
