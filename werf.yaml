@@ -17,7 +17,7 @@ spec:
         app: app-web
     spec:
       containers:
-        - image: $env.DOCKER_METADATA_OUTPUT_TAGS
+        - image: $image
           imagePullPolicy: IfNotPresent
           name: app-web
       terminationGracePeriodSeconds: 30
