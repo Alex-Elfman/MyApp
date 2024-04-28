@@ -65,5 +65,5 @@ jobs:
         run: |
           export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           envsubst < myapp-deploy.yml | kubectl apply -f -
-#            envsubst < myapp-deploy.yml | kubectl apply -f -
+#            envsubst < /mnt/e/wsl/diplom/myapp/myapp-deploy.yml | kubectl apply -f -
 #            sed 's/wantReplaced/'"${MYVAR}"'/'
