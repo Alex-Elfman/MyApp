@@ -60,12 +60,12 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Build werf.yaml
-        run: |
+      - name: Build deploy
+        run: envsubst < myapp-deploy.yml | kubectl apply -f -
 #          sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
 #          cat werf.yaml
-          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-          envsubst < myapp-deploy.yml | kubectl apply -f -
+#          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+#          envsubst < myapp-deploy.yml | kubectl apply -f -
 #        with:
 #          context: . 
 #          push: true
