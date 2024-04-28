@@ -78,7 +78,11 @@ jobs:
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
+          env: stage
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+        env:
+          WERF_SET_ENV_URL: "envUrl=https://158.160.127.168:6443"
+          
       - run: |          
           kubectl cluster-info
           kubectl get nodes         
