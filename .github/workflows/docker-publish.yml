@@ -91,7 +91,7 @@ jobs:
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
-          env: version-${{ DOCKER_METADATA_OUTPUT_VERSION }}
+          env: version-${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
         env:
           WERF_SET_ENV_URL: "envUrl=http://osipov.devops.net"
