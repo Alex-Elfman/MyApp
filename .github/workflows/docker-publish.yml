@@ -61,13 +61,16 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Build werf.yaml
-        run: |
-#          sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
-#          cat werf.yaml
-          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-#          envsubst < myapp-deploy.yml | kubectl apply -f -
-#        with:
-#          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+        with:
+          context: . 
+          push: true
+          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+          run: |
+            sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
+            cat werf.yaml
+            export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+            envsubst < myapp-deploy.yml | kubectl apply -f -
+
           
 #        shell: bash
           
