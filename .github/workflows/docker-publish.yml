@@ -65,7 +65,7 @@ jobs:
           context: . 
           push: true
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-          run: |
+          script: |
             sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
             cat werf.yaml
             export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
