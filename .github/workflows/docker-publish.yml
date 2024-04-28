@@ -64,8 +64,8 @@ jobs:
 #          cat werf.yaml
           export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           envsubst < myapp-deploy.yml | kubectl apply -f -
-        with:
-          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+#        with:
+#          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
           
 #        shell: bash
           
