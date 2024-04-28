@@ -79,7 +79,7 @@ jobs:
         uses: werf/actions/converge@v2
         with:
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-        run: |          
+      - run: |          
           kubectl cluster-info
           kubectl get nodes         
           
