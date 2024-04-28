@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo "Building stage werf.yaml"
+
+#env -i image_dev=$image_dev
+#export image_dev=alexelfman/myapp:v1.0.1
+echo $image_dev
+
+bash -c '
+  export image_dev=alexelfman/myapp:v1.0.1
+  source myapp-deploy.yml;' > werf.yaml
+cat werf.yaml

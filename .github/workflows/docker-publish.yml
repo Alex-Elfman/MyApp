@@ -59,11 +59,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           
       - name: Deploy
-#        with:
-#          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-#          script: |
-        script: |
-          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-          envsubst < mnt/e/wsl/diplom/myapp/myapp-deploy.yml | kubectl apply -f -
-#            envsubst < /mnt/e/wsl/diplom/myapp/myapp-deploy.yml | kubectl apply -f -
+        uses: werf/actions/converge@v2
+        with:
+          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+#          env: image_dev: "${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
+          run: sed -i -e "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
+#            rm -rf werf.yaml
+#            build
+#          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+#            envsubst < myapp-deploy.yml | kubectl apply -f -
+#            envsubst < myapp-deploy.yml | kubectl apply -f -
 #            sed 's/wantReplaced/'"${MYVAR}"'/'
