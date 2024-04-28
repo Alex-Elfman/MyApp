@@ -60,9 +60,9 @@ jobs:
 
       - name: Build werf.yaml
         run: |
-          sed -i -e "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
+          sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
           cat werf.yaml
-        shell: bash
+#        shell: bash
           
       - name: Deploy
         uses: werf/actions/converge@v2
