@@ -72,11 +72,18 @@ jobs:
 #          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
           
 #        shell: bash
+
+
           
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+        run: |          
+          kubectl cluster-info
+          kubectl get nodes         
+          
+          
 #          env: image_dev: "${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
 #          run: | 
 #            sed -i -e "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
