@@ -93,8 +93,8 @@ jobs:
         with:
           env: version-${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-#        env:
-#          WERF_SET_ENV_URL: "envUrl=https://158.160.127.168:6443"
+        env:
+          WERF_SET_ENV_URL: "envUrl=http://osipov.devops.net"
           
       - run: |          
           kubectl cluster-info
