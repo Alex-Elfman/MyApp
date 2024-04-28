@@ -73,15 +73,28 @@ jobs:
           
 #        shell: bash
 
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-          
+      - name: Build and Publish
+        uses: werf/actions/build-and-publish@master
+        with:
+          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
       - name: Deploy
         uses: werf/actions/converge@v2
         with:
 #          env: stage
           kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-        env:
-          WERF_SET_ENV_URL: "envUrl=https://158.160.127.168:6443"
+#        env:
+#          WERF_SET_ENV_URL: "envUrl=https://158.160.127.168:6443"
           
       - run: |          
           kubectl cluster-info
