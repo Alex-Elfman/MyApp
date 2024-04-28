@@ -62,7 +62,7 @@ jobs:
 #        with:
 #          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
 #          script: |
-        run: |
+        script: |
           export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           envsubst < mnt/e/wsl/diplom/myapp/myapp-deploy.yml | kubectl apply -f -
 #            envsubst < /mnt/e/wsl/diplom/myapp/myapp-deploy.yml | kubectl apply -f -
