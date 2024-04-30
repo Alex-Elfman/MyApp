@@ -1,4 +1,5 @@
 FROM nginx:1.23.3
+WORKDIR /myapp
 
 MAINTAINER Alex Osipov <Alex-ElfMan@mail.ru>
 

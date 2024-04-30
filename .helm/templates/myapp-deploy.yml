@@ -5,7 +5,7 @@ metadata:
   labels:
     app: app-web
   name: app-web
-  namespace: stage
+#  namespace: stage
 spec:
   replicas: 1
   selector:
