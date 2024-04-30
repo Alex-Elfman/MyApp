@@ -63,7 +63,7 @@ jobs:
       - name: Deploy
         run: |          
           docker pull ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-          envsubst < myapp-deploy.yml | kubectl apply -f - --image=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+          kubectl apply -f myapp-deploy.yml --image=${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           kubectl cluster-info
           kubectl get nodes         
           
