@@ -16,7 +16,7 @@ spec:
       labels:
         app: app-web
     spec:
-      imagePullPolicy:
+#      imagePullPolicy:
 #      - name: IfNotPresent #registrysecret
       containers:
       - name: app-web   
