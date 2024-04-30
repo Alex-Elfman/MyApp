@@ -16,12 +16,9 @@ spec:
       labels:
         app: app-web
     spec:
-#      imagePullPolicy:
-#      - name: IfNotPresent #registrysecret
       containers:
       - name: app-web   
         image: {{ .Values.werf.image.myapp }}
-        #command: ["/app/hello.sh"]  
       terminationGracePeriodSeconds: 30
 
 ---
