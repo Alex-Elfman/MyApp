@@ -60,10 +60,14 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Deploy
-        run: |          
-          docker pull ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-          kubectl apply -f https://github.com/Alex-Elfman/MyApp/blob/main/myapp-deploy.yml
+      - name: access on k8s Kind Cluster
+        uses: helm/kind-action@v1.4.0
+        with:
+          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
+
+      - run: |          
+#          docker pull ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+#          kubectl apply -f https://github.com/Alex-Elfman/MyApp/myapp-deploy.yml
           kubectl cluster-info
           kubectl get nodes         
           
