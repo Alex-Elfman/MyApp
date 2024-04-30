@@ -60,54 +60,10 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-#      - name: Build deploy
-#        run: envsubst < myapp-deploy.yml | kubectl apply -f -s "${{ secrets.KUBE_CONFIG_BASE64_DATA }}" -
-#          sed "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
-#          cat werf.yaml
-#          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-#          envsubst < myapp-deploy.yml | kubectl apply -f -
-#        with:
-#          context: . 
-#          push: true
-#          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-          
-#        shell: bash
-
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 0
-
-#      - name: Build and Publish
-#        uses: werf/actions/build-and-publish
-#        with:
-#          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-
-#      - name: Checkout code
-#        uses: actions/checkout@v3
-#        with:
-#          fetch-depth: 0
-
       - name: Deploy
-        uses: werf/actions/converge@v2
-        with:
-          env: version-${{ env.DOCKER_METADATA_OUTPUT_VERSION }}
-          kube-config-base64-data: ${{ secrets.KUBE_CONFIG_BASE64_DATA }}
-        env:
-          WERF_SET_ENV_URL: "envUrl=http://osipov.devops.net"
-          
       - run: |          
+          docker pull ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
+          envsubst < myapp-deploy.yml | kubectl apply -f --image=ghcr.io/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}  -
           kubectl cluster-info
           kubectl get nodes         
           
-          
-#          env: image_dev: "${{ env.DOCKER_METADATA_OUTPUT_TAGS }}"
-#          run: | 
-#            sed -i -e "s/$image_dev/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}/" werf.yaml
-#            cat werf.yaml
-#            rm -rf werf.yaml
-#            build
-#          export image_dev: ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
-#            envsubst < myapp-deploy.yml | kubectl apply -f -
-#            envsubst < myapp-deploy.yml | kubectl apply -f -
-#            sed 's/wantReplaced/'"${MYVAR}"'/'
