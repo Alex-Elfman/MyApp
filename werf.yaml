@@ -1,0 +1,6 @@
+project: werf-osipov-app
+configVersion: 1
+
+---
+image: myapp
+dockerfile: Dockerfile

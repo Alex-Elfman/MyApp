@@ -16,10 +16,12 @@ spec:
       labels:
         app: app-web
     spec:
+      imagePullPolicy:
+      - name: registrysecret
       containers:
-        - image: alexelfman/myapp:v1.0.1
-          imagePullPolicy: IfNotPresent
-          name: app-web
+      - name: app-web   
+        image: {{ .Values.werf.image.myapp }}
+        #command: ["/app/hello.sh"]  
       terminationGracePeriodSeconds: 30
 
 ---
