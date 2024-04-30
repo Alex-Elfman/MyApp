@@ -61,7 +61,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Deploy
-      - run: |          
+        run: |          
           docker pull ${{ env.DOCKER_METADATA_OUTPUT_TAGS }}
           envsubst < myapp-deploy.yml | kubectl apply -f --image=ghcr.io/${{ env.DOCKER_METADATA_OUTPUT_TAGS }}  -
           kubectl cluster-info
