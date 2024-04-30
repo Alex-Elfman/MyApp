@@ -1,4 +1,4 @@
-project: werf-osipov-app
+project: stage
 configVersion: 1
 
 ---
