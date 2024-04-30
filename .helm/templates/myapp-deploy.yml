@@ -20,7 +20,7 @@ spec:
       - name: registrysecret
       containers:
       - name: app-web   
-        image: {{ .Values.werf.image.myapp }}:{{ .Values.image.tag }}
+        image: {{ .Values.werf.image.myapp }}
         #command: ["/app/hello.sh"]  
       terminationGracePeriodSeconds: 30
 
