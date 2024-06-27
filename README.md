@@ -2,3 +2,5 @@
 
 Манифест лежит по пути .github/workflows/docker-publish.yml
 
+
+
